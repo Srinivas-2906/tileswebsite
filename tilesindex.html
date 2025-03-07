@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TileStrakk | Premium Tile Solutions</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2a6d80;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-link {
+            font-size: 1rem;
+            padding: 10px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(42, 109, 128, 0.1);
+        }
+
+        .nav-link.active {
+            border: 1px solid #2a6d80;
+            color: #2a6d80;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #2a6d80;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid #2a6d80;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: #2a6d80;
+        }
+
+        .btn:hover {
+            background-color: #2a6d80;
+            color: #ffffff;
+        }
+
+        /* Collections Section */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 700;
+            color: #2a6d80;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .collection-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            height: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .collection-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-card:hover .collection-img {
+            transform: scale(1.05);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(42, 109, 128, 0.8));
+            padding: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .collection-title {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .collection-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: #fff;
+        }
+
+        /* Enhanced Gallery Section */
+        .gallery-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 1px solid rgba(42, 109, 128, 0.3);
+            border-radius: 30px;
+            background-color: transparent;
+            color: #2a6d80;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            background-color: rgba(42, 109, 128, 0.1);
+        }
+
+        .filter-btn.active {
+            background-color: #2a6d80;
+            color: #ffffff;
+        }
+
+        .gallery-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(42, 109, 128, 0.7));
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            color: #fff;
+        }
+
+        .gallery-title {
+            font-size: 1.1rem;
+            margin-top: 5px;
+            color: #fff;
+        }
+
+        .gallery-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(42, 109, 128, 0.3);
+            background-color: transparent;
+            color: #2a6d80;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover {
+            background-color: rgba(42, 109, 128, 0.1);
+        }
+
+        .page-btn.active {
+            background-color: #2a6d80;
+            color: #ffffff;
+        }
+
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .gallery-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 80vh;
+        }
+
+        .gallery-modal-img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 1.5rem;
+            color: #2a6d80;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #2a6d80;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-modal-nav:hover {
+            background-color: #2a6d80;
+            color: #ffffff;
+        }
+
+        .gallery-modal-prev {
+            left: 20px;
+        }
+
+        .gallery-modal-next {
+            right: 20px;
+        }
+
+        .gallery-modal-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #2a6d80;
+        }
+
+        /* Services Section */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2a6d80;
+        }
+
+        .service-description {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .service-link {
+            display: inline-block;
+            color: #2a6d80;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .service-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #2a6d80;
+            transition: width 0.3s ease;
+        }
+
+        .service-link:hover::after {
+            width: 100%;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-img-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 5px solid rgba(42, 109, 128, 0.1);
+        }
+
+        .team-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #2a6d80;
+        }
+
+        .team-role {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: #666;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #f9f9f9;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            display: none;
+        }
+
+        .testimonial-item.active {
+            display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #2a6d80;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .testimonial-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #2a6d80;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-arrow:hover {
+            background-color: #2a6d80;
+            color: #fff;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            margin: 0 20px;
+        }
+
+        .testimonial-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(42, 109, 128, 0.2);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background-color: #2a6d80;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(42, 109, 128, 0.2);
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            color: #333;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #2a6d80;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background-color: transparent;
+            color: #2a6d80;
+            border: 1px solid #2a6d80;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #2a6d80;
+            color: #ffffff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2a6d80;
+            padding: 50px 0 20px;
+            color: #fff;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(42, 109, 128, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2a6d80;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background-color: #2a6d80;
+            color: #fff;
+        }
+
+        .collection-details {
+            padding: 40px;
+        }
+
+        .collection-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .collection-details-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            max-height: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .collection-details-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .collection-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .collection-details-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #2a6d80;
+        }
+
+        .collection-meta {
+            margin-bottom: 20px;
+        }
+
+        .collection-meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .collection-meta-icon {
+            margin-right: 10px;
+            opacity: 0.7;
+            color: #2a6d80;
+        }
+
+        .collection-description {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .collection-products {
+            margin-top: 40px;
+        }
+
+        .collection-products-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2a6d80;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 150px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #2a6d80;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: #fff;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s ease;
+                z-index: 1001;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                z-index: 1002;
+                color: #2a6d80;
+            }
+
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .gallery-modal-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .gallery-modal-prev {
+                left: 10px;
+            }
+
+            .gallery-modal-next {
+                right: 10px;
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .collections-grid,
+            .gallery-grid,
+            .services-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            .nav-menu {
+                position: static;
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                flex-direction: row;
+                box-shadow: none;
+            }
+            
+            .nav-item {
+                margin-left: 30px;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            
+            .collections-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+            
+            .services-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .about-content {
+                flex-direction: row;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">T</a>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#collections" class="nav-link">Collections</a></li>
+                    <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="menuToggle">☰</div>
+            <div class="menu-overlay" id="menuOverlay"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Premium Tile Solutions</h1>
+            <p class="hero-subtitle">Transform your space with our exquisite tile collections</p>
+            <a href="#collections" class="btn">Explore Collections</a>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section id="collections" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Collections</h2>
+            <div class="collections-grid">
+                <div class="collection-card" data-collection="collection1">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Modern Bathroom Collection" class="collection-img  alt="Modern Bathroom Collection" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3 class="collection-title">Modern Bathroom</h3>
+                        <p class="collection-subtitle">Elegant & Contemporary</p>
+                    </div>
+                </div>
+                <div class="collection-card" data-collection="collection2">
+                    <img src="https://images.unsplash.com/photo-1556911220-bda9f7f6b548?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kitchen Collection" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3 class="collection-title">Kitchen Collection</h3>
+                        <p class="collection-subtitle">Functional & Stylish</p>
+                    </div>
+                </div>
+                <div class="collection-card" data-collection="collection3">
+                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Outdoor Tiles" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3 class="collection-title">Outdoor Tiles</h3>
+                        <p class="collection-subtitle">Durable & Weather-Resistant</p>
+                    </div>
+                </div>
+                <div class="collection-card" data-collection="collection4">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Luxury Marble" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3 class="collection-title">Luxury Marble</h3>
+                        <p class="collection-subtitle">Timeless Elegance</p>
+                    </div>
+                </div>
+                <div class="collection-card" data-collection="collection5">
+                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Minimalist Collection" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3 class="collection-title">Minimalist Collection</h3>
+                        <p class="collection-subtitle">Clean & Simple</p>
+                    </div>
+                </div>
+                <div class="collection-card" data-collection="collection6">
+                    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vintage Patterns" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3 class="collection-title">Vintage Patterns</h3>
+                        <p class="collection-subtitle">Classic & Decorative</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title">Tile Gallery</h2>
+            
+            <!-- Gallery Filter Buttons -->
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All Tiles</button>
+                <button class="filter-btn" data-filter="bathroom">Bathroom</button>
+                <button class="filter-btn" data-filter="kitchen">Kitchen</button>
+                <button class="filter-btn" data-filter="outdoor">Outdoor</button>
+                <button class="filter-btn" data-filter="marble">Marble</button>
+                <button class="filter-btn" data-filter="ceramic">Ceramic</button>
+            </div>
+            
+            <!-- Gallery Container -->
+            <div class="gallery-container">
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Bathroom Gallery Items -->
+                    <div class="gallery-item" data-category="bathroom" data-index="0">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Modern Bathroom Tiles" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Bathroom</p>
+                            <h4 class="gallery-title">Modern White</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bathroom" data-index="1">
+                        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Luxury Bathroom" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Bathroom</p>
+                            <h4 class="gallery-title">Luxury Suite</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bathroom" data-index="2">
+                        <img src="https://images.unsplash.com/photo-1600566752547-20a3b2e4b433?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Shower Tiles" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Bathroom</p>
+                            <h4 class="gallery-title">Shower Enclosure</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="bathroom" data-index="3">
+                        <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bathroom Floor" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Bathroom</p>
+                            <h4 class="gallery-title">Floor Design</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- Kitchen Gallery Items -->
+                    <div class="gallery-item" data-category="kitchen" data-index="4">
+                        <img src="https://images.unsplash.com/photo-1556911220-bda9f7f6b548?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kitchen Backsplash" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Kitchen</p>
+                            <h4 class="gallery-title">Modern Backsplash</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="kitchen" data-index="5">
+                        <img src="https://images.unsplash.com/photo-1556909114-44e3e9699e2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kitchen Floor" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Kitchen</p>
+                            <h4 class="gallery-title">Elegant Flooring</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="kitchen" data-index="6">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Minimalist Kitchen" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Kitchen</p>
+                            <h4 class="gallery-title">Minimalist Design</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="kitchen" data-index="7">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kitchen Island" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Kitchen</p>
+                            <h4 class="gallery-title">Island Feature</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- Outdoor Gallery Items -->
+                    <div class="gallery-item" data-category="outdoor" data-index="8">
+                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Patio Tiles" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Outdoor</p>
+                            <h4 class="gallery-title">Patio Design</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="outdoor" data-index="9">
+                        <img src="https://images.unsplash.com/photo-1600566752734-2a0e91f8cb3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pool Surround" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Outdoor</p>
+                            <h4 class="gallery-title">Pool Surround</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="outdoor" data-index="10">
+                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Garden Path" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Outdoor</p>
+                            <h4 class="gallery-title">Garden Pathway</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="outdoor" data-index="11">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Terrace Tiles" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Outdoor</p>
+                            <h4 class="gallery-title">Terrace Design</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- Marble Gallery Items -->
+                    <div class="gallery-item" data-category="marble" data-index="12">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Marble Floor" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Marble</p>
+                            <h4 class="gallery-title">Luxury Flooring</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="marble" data-index="13">
+                        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Marble Bathroom" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Marble</p>
+                            <h4 class="gallery-title">Bathroom Feature</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="marble" data-index="14">
+                        <img src="https://images.unsplash.com/photo-1600607687644-c7f34e92fa17?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Marble Wall" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Marble</p>
+                            <h4 class="gallery-title">Wall Cladding</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="marble" data-index="15">
+                        <img src="https://images.unsplash.com/photo-1600607687710-040c8ea40173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Marble Kitchen" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Marble</p>
+                            <h4 class="gallery-title">Kitchen Countertop</h4>
+                        </div>
+                    </div>
+                    
+                    <!-- Ceramic Gallery Items -->
+                    <div class="gallery-item" data-category="ceramic" data-index="16">
+                        <img src="https://images.unsplash.com/photo-1600566753376-12c8ab8e17a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ceramic Patterns" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Ceramic</p>
+                            <h4 class="gallery-title">Patterned Design</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="ceramic" data-index="17">
+                        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vintage Ceramic" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Ceramic</p>
+                            <h4 class="gallery-title">Vintage Style</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="ceramic" data-index="18">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Modern Ceramic" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Ceramic</p>
+                            <h4 class="gallery-title">Modern Simplicity</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="ceramic" data-index="19">
+                        <img src="https://images.unsplash.com/photo-1600566752547-20a3b2e4b433?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ceramic Bathroom" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <p class="gallery-category">Ceramic</p>
+                            <h4 class="gallery-title">Bathroom Accent</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Pagination -->
+                <div class="gallery-pagination" id="galleryPagination">
+                    <!-- Pagination buttons will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-modal-content">
+            <span class="gallery-modal-close" id="galleryModalClose">×</span>
+            <img src="/placeholder.svg" alt="" class="gallery-modal-img" id="galleryModalImg">
+            <div class="gallery-modal-nav gallery-modal-prev" id="galleryModalPrev">❮</div>
+            <div class="gallery-modal-nav gallery-modal-next" id="galleryModalNext">❯</div>
+            <div class="gallery-modal-caption" id="galleryModalCaption"></div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-container">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tile Installation" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">Professional Installation</h3>
+                        <p class="service-description">Our expert team ensures precise installation of all tile types, delivering flawless results that enhance your space's beauty and functionality.</p>
+                        <a href="#contact" class="service-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Design Consultation" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">Design Consultation</h3>
+                        <p class="service-description">Work with our design experts to create the perfect tile layout for your space. We help you select the right colors, patterns, and materials.</p>
+                        <a href="#contact" class="service-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Custom Solutions" class="service-img">
+                    <div class="service-content">
+                        <h3 class="service-title">Custom Solutions</h3>
+                        <p class="service-description">Need something unique? We offer custom tile cutting, design, and manufacturing services to bring your vision to life.</p>
+                        <a href="#contact" class="service-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>TileStrakk is a premium tile company dedicated to providing high-quality tiles and exceptional service. With over 15 years of experience in the industry, we specialize in ceramic, porcelain, marble, and natural stone tiles for residential and commercial projects.</p>
+                    <p>Our showroom features an extensive collection of tiles from around the world, carefully curated to offer the latest trends and timeless classics. We believe that tiles are not just functional elements but key design features that transform spaces.</p>
+                    <p>What sets us apart is our commitment to quality, attention to detail, and personalized approach. We work closely with homeowners, designers, architects, and contractors to ensure that every project is completed to the highest standards.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="About Us">
+                </div>
+            </div>
+            
+            <h3 class="section-title">Our Team</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-img-container">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member 1" class="team-img">
+                    </div>
+                    <h4 class="team-name">Emma Johnson</h4>
+                    <p class="team-role">Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img-container">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member 2" class="team-img">
+                    </div>
+                    <h4 class="team-name">David Chen</h4>
+                    <p class="team-role">Design Director</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img-container">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member 3" class="team-img">
+                    </div>
+                    <h4 class="team-name">Sophia Martinez</h4>
+                    <p class="team-role">Installation Manager</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img-container">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member 4" class="team-img">
+                    </div>
+                    <h4 class="team-name">Michael Taylor</h4>
+                    <p class="team-role">Product Specialist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-slider" id="testimonialSlider">
+                <div class="testimonial-item active">
+                    <p class="testimonial-text">"TileStrakk transformed our bathroom into a luxurious spa-like retreat. The quality of their tiles and installation work exceeded our expectations. We couldn't be happier with the results!"</p>
+                    <h4 class="testimonial-author">Sarah & James Wilson</h4>
+                    <p class="testimonial-role">Residential Clients</p>
+                </div>
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"As an interior designer, I've worked with many tile suppliers, but TileStrakk stands out for their exceptional product quality and customer service. They're my go-to recommendation for clients seeking premium tile solutions."</p>
+                    <h4 class="testimonial-author">Rebecca Thompson</h4>
+                    <p class="testimonial-role">Interior Designer</p>
+                </div>
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"We hired TileStrakk for our restaurant renovation, and they delivered beyond our expectations. Their team was professional, efficient, and the custom tile work they created has become a talking point among our customers."</p>
+                    <h4 class="testimonial-author">Daniel Rodriguez</h4>
+                    <p class="testimonial-role">Restaurant Owner</p>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <div class="testimonial-arrow" id="prevTestimonial">❮</div>
+                <div class="testimonial-dots" id="testimonialDots">
+                    <span class="testimonial-dot active" data-index="0"></span>
+                    <span class="testimonial-dot" data-index="1"></span>
+                    <span class="testimonial-dot" data-index="2"></span>
+                </div>
+                <div class="testimonial-arrow" id="nextTestimonial">❯</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Subject">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">TileStrakk</h3>
+                    <p>Premium tile solutions for residential and commercial spaces. We offer high-quality tiles, professional installation, and exceptional customer service.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Home</a></li>
+                        <li class="footer-link"><a href="#collections">Collections</a></li>
+                        <li class="footer-link"><a href="#gallery">Gallery</a></li>
+                        <li class="footer-link"><a href="#services">Services</a></li>
+                        <li class="footer-link"><a href="#about">About Us</a></li>
+                        <li class="footer-link"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact Info</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link">123 Tile Street, Amsterdam</li>
+                        <li class="footer-link">+31 20 123 4567</li>
+                        <li class="footer-link">info@tilestrakk.nl</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">FB</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">PT</a>
+                        <a href="#" class="social-link">LI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TileStrakk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Collection Details Modal -->
+    <div class="modal" id="collectionModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">×</span>
+            <div class="collection-details" id="collectionDetails">
+                <!-- Collection details will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Collection data
+        const collectionData = {
+            collection1: {
+                title: "Modern Bathroom",
+                subtitle: "Elegant & Contemporary",
+                image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Our Modern Bathroom collection features sleek, contemporary tiles that create a clean and sophisticated aesthetic. Perfect for creating a spa-like retreat in your home, these tiles combine functionality with elegant design. Available in various sizes, colors, and finishes, this collection offers versatile options for walls, floors, and shower enclosures.",
+                products: [
+                    {
+                        name: "White Subway Tile",
+                        price: "€29.99/m²",
+                        image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Marble Hexagon",
+                        price: "€49.99/m²",
+                        image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Gray Porcelain",
+                        price: "€39.99/m²",
+                        image: "https://images.unsplash.com/photo-1600566752547-20a3b2e4b433?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Textured White",
+                        price: "€34.99/m²",
+                        image: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    }
+                ]
+            },
+            collection2: {
+                title: "Kitchen Collection",
+                subtitle: "Functional & Stylish",
+                image: "https://images.unsplash.com/photo-1556911220-bda9f7f6b548?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Our Kitchen Collection offers durable and stylish tiles designed to withstand the demands of busy kitchen environments. From backsplashes to flooring, these tiles combine practicality with aesthetic appeal. Resistant to stains, moisture, and heat, they're perfect for creating a beautiful and functional kitchen space that will stand the test of time.",
+                products: [
+                    {
+                        name: "Subway Backsplash",
+                        price: "€32.99/m²",
+                        image: "https://images.unsplash.com/photo-1556911220-bda9f7f6b548?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Porcelain Floor Tile",
+                        price: "€45.99/m²",
+                        image: "https://images.unsplash.com/photo-1556909114-44e3e9699e2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Minimalist White",
+                        price: "€38.99/m²",
+                        image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Island Feature Tile",
+                        price: "€52.99/m²",
+                        image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    }
+                ]
+            },
+            collection3: {
+                title: "Outdoor Tiles",
+                subtitle: "Durable & Weather-Resistant",
+                image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Our Outdoor Tiles collection is specially designed to withstand the elements while enhancing your exterior spaces. These frost-resistant, non-slip tiles are perfect for patios, pool surrounds, and garden pathways. Available in a variety of textures and finishes, they combine safety, durability, and style for outdoor living areas that look beautiful year-round.",
+                products: [
+                    {
+                        name: "Patio Stone Tile",
+                        price: "€42.99/m²",
+                        image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Pool Surround",
+                        price: "€48.99/m²",
+                        image: "https://images.unsplash.com/photo-1600566752734-2a0e91f8cb3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Garden Path Tile",
+                        price: "€39.99/m²",
+                        image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Terrace Porcelain",
+                        price: "€54.99/m²",
+                        image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    }
+                ]
+            },
+            collection4: {
+                title: "Luxury Marble",
+                subtitle: "Timeless Elegance",
+                image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Our Luxury Marble collection brings timeless elegance to any space. These premium tiles showcase the natural beauty of marble with its distinctive veining and luxurious appearance. Perfect for creating statement floors, walls, or countertops, this collection adds a touch of sophistication and grandeur to both residential and commercial interiors.",
+                products: [
+                    {
+                        name: "Calacatta Gold",
+                        price: "€89.99/m²",
+                        image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Carrara White",
+                        price: "€79.99/m²",
+                        image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Nero Marquina",
+                        price: "€94.99/m²",
+                        image: "https://images.unsplash.com/photo-1600607687644-c7f34e92fa17?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Emperador Brown",
+                        price: "€84.99/m²",
+                        image: "https://images.unsplash.com/photo-1600607687710-040c8ea40173?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    }
+                ]
+            },
+            collection5: {
+                title: "Minimalist Collection",
+                subtitle: "Clean & Simple",
+                image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Our Minimalist Collection embodies the 'less is more' philosophy with clean lines and simple designs. These tiles feature neutral colors and subtle textures that create a sense of calm and spaciousness. Perfect for contemporary interiors, they provide a versatile backdrop that complements various design styles and allows other elements to shine.",
+                products: [
+                    {
+                        name: "Pure White",
+                        price: "€36.99/m²",
+                        image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Soft Gray",
+                        price: "€38.99/m²",
+                        image: "https://images.unsplash.com/photo-1600566752547-20a3b2e4b433?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Beige Matte",
+                        price: "€37.99/m²",
+                        image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Light Concrete",
+                        price: "€42.99/m²",
+                        image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    }
+                ]
+            },
+            collection6: {
+                title: "Vintage Patterns",
+                subtitle: "Classic & Decorative",
+                image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Our Vintage Patterns collection celebrates traditional designs with a contemporary twist. These decorative tiles feature intricate patterns inspired by various cultural and historical styles. Perfect for creating feature walls, statement floors, or decorative accents, they add character, color, and artistic flair to any space.",
+                products: [
+                    {
+                        name: "Moroccan Pattern",
+                        price: "€56.99/m²",
+                        image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Victorian Motif",
+                        price: "€58.99/m²",
+                        image: "https://images.unsplash.com/photo-1600566753376-12c8ab8e17a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Mediterranean Blue",
+                        price: "€54.99/m²",
+                        image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        name: "Retro Hexagon",
+                        price: "€52.99/m²",
+                        image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    }
+                ]
+            }
+        };
+
+        // Gallery data for modal
+        const galleryData = [
+            {
+                category: "bathroom",
+                title: "Modern White",
+                image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "bathroom",
+                title: "Luxury Suite",
+                image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "bathroom",
+                title: "Shower Enclosure",
+                image: "https://images.unsplash.com/photo-1600566752547-20a3b2e4b433?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "bathroom",
+                title: "Floor Design",
+                image: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "kitchen",
+                title: "Modern Backsplash",
+                image: "https://images.unsplash.com/photo-1556911220-bda9f7f6b548?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "kitchen",
+                title: "Elegant Flooring",
+                image: "https://images.unsplash.com/photo-1556909114-44e3e9699e2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "kitchen",
+                title: "Minimalist Design",
+                image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "kitchen",
+                title: "Island Feature",
+                image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "outdoor",
+                title: "Patio Design",
+                image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "outdoor",
+                title: "Pool Surround",
+                image: "https://images.unsplash.com/photo-1600566752734-2a0e91f8cb3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "outdoor",
+                title: "Garden Pathway",
+                image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "outdoor",
+                title: "Terrace Design",
+                image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "marble",
+                title: "Luxury Flooring",
+                image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "marble",
+                title: "Bathroom Feature",
+                image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "marble",
+                title: "Wall Cladding",
+                image: "https://images.unsplash.com/photo-1600607687644-c7f34e92fa17?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "marble",
+                title: "Kitchen Countertop",
+                image: "https://images.unsplash.com/photo-1600607687710-040c8ea40173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "ceramic",
+                title: "Patterned Design",
+                image: "https://images.unsplash.com/photo-1600566753376-12c8ab8e17a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "ceramic",
+                title: "Vintage Style",
+                image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "ceramic",
+                title: "Modern Simplicity",
+                image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                category: "ceramic",
+                title: "Bathroom Accent",
+                image: "https://images.unsplash.com/photo-1600566752547-20a3b2e4b433?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            }
+        ];
+
+        // DOM Elements
+        const header = document.getElementById('header');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const collectionCards = document.querySelectorAll('.collection-card');
+        const collectionModal = document.getElementById('collectionModal');
+        const collectionDetails = document.getElementById('collectionDetails');
+        const modalClose = document.getElementById('modalClose');
+        
+        // Gallery Elements
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryGrid = document.getElementById('galleryGrid');
+        const galleryPagination = document.getElementById('galleryPagination');
+        const galleryModal = document.getElementById('galleryModal');
+        const galleryModalImg = document.getElementById('galleryModalImg');
+        const galleryModalClose = document.getElementById('galleryModalClose');
+        const galleryModalPrev = document.getElementById('galleryModalPrev');
+        const galleryModalNext = document.getElementById('galleryModalNext');
+        const galleryModalCaption = document.getElementById('galleryModalCaption');
+        
+        // Testimonial Elements
+        const testimonialItems = document.querySelectorAll('.testimonial-item');
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        const prevTestimonial = document.getElementById('prevTestimonial');
+        const nextTestimonial = document.getElementById('nextTestimonial');
+
+        // Sticky Header
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            menuToggle.textContent = '☰';
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                }
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Collection Modal
+        collectionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const collectionId = card.getAttribute('data-collection');
+                const collection = collectionData[collectionId];
+                
+                if (collection) {
+                    const productsHTML = collection.products.map(product => `
+                        <div class="product-item">
+                            <img src="${product.image}" alt="${product.name}" class="product-img">
+                            <div class="product-info">
+                                <h4 class="product-name">${product.name}</h4>
+                                <p class="product-price">${product.price}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    const collectionHTML = `
+                        <div class="collection-header">
+                            <div class="collection-details-img">
+                                <img src="${collection.image}" alt="${collection.title}">
+                            </div>
+                            <div class="collection-info">
+                                <h2 class="collection-details-title">${collection.title}</h2>
+                                <p class="collection-subtitle">${collection.subtitle}</p>
+                                <div class="collection-meta">
+                                    <div class="collection-meta-item">
+                                        <span class="collection-meta-icon">✓</span>
+                                        <span>Premium Quality</span>
+                                    </div>
+                                    <div class="collection-meta-item">
+                                        <span class="collection-meta-icon">✓</span>
+                                        <span>Professional Installation Available</span>
+                                    </div>
+                                    <div class="collection-meta-item">
+                                        <span class="collection-meta-icon">✓</span>
+                                        <span>10-Year Warranty</span>
+                                    </div>
+                                </div>
+                                <a href="#contact" class="btn">Request Quote</a>
+                            </div>
+                        </div>
+                        <div class="collection-description">
+                            <p>${collection.description}</p>
+                        </div>
+                        <div class="collection-products">
+                            <h3 class="collection-products-title">Featured Products</h3>
+                            <div class="products-grid">
+                                ${productsHTML}
+                            </div>
+                        </div>
+                    `;
+                    
+                    collectionDetails.innerHTML = collectionHTML;
+                    collectionModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            collectionModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        collectionModal.addEventListener('click', (e) => {
+            if (e.target === collectionModal) {
+                collectionModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Gallery Filter
+        let currentCategory = 'all';
+        let currentPage = 1;
+        const itemsPerPage = 8;
+        
+        // Initialize gallery
+        function initGallery() {
+            filterGallery('all');
+            createPagination();
+        }
+        
+        // Filter gallery items
+        function filterGallery(category) {
+            currentCategory = category;
+            currentPage = 1;
+            
+            galleryItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                
+                if (category === 'all' || itemCategory === category) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            createPagination();
+            showPage(1);
+        }
+        
+        // Create pagination
+        function createPagination() {
+            galleryPagination.innerHTML = '';
+            
+            const visibleItems = Array.from(galleryItems).filter(item => {
+                const itemCategory = item.getAttribute('data-category');
+                return currentCategory === 'all' || itemCategory === currentCategory;
+            });
+            
+            const totalPages = Math.ceil(visibleItems.length / itemsPerPage);
+            
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.classList.add('page-btn');
+                pageBtn.textContent = i;
+                
+                if (i === currentPage) {
+                    pageBtn.classList.add('active');
+                }
+                
+                pageBtn.addEventListener('click', () => {
+                    showPage(i);
+                });
+                
+                galleryPagination.appendChild(pageBtn);
+            }
+        }
+        
+        // Show specific page
+        function showPage(page) {
+            currentPage = page;
+            
+            const visibleItems = Array.from(galleryItems).filter(item => {
+                const itemCategory = item.getAttribute('data-category');
+                return currentCategory === 'all' || itemCategory === currentCategory;
+            });
+            
+            visibleItems.forEach((item, index) => {
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage - 1;
+                
+                if (index >= startIndex && index <= endIndex) {
+                    item.style.display = '';
+                    item.classList.add('fade-in');
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('fade-in');
+                }
+            });
+            
+            // Update active page button
+            const pageBtns = galleryPagination.querySelectorAll('.page-btn');
+            pageBtns.forEach((btn, index) => {
+                if (index + 1 === page) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        // Gallery Modal
+        let currentImageIndex = 0;
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const index = parseInt(item.getAttribute('data-index'));
+                openGalleryModal(index);
+            });
+        });
+        
+        function openGalleryModal(index) {
+            currentImageIndex = index;
+            const item = galleryData[index];
+            
+            galleryModalImg.src = item.image;
+            galleryModalImg.alt = item.title;
+            galleryModalCaption.textContent = `${item.title} - ${item.category.charAt(0).toUpperCase() + item.category.slice(1)}`;
+            
+            galleryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        galleryModalClose.addEventListener('click', closeGalleryModal);
+        
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) {
+                closeGalleryModal();
+            }
+        });
+        
+        function closeGalleryModal() {
+            galleryModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        galleryModalPrev.addEventListener('click', () => {
+            navigateGallery(-1);
+        });
+        
+        galleryModalNext.addEventListener('click', () => {
+            navigateGallery(1);
+        });
+        
+        function navigateGallery(direction) {
+            let newIndex = currentImageIndex + direction;
+            
+            // Handle wrapping
+            if (newIndex < 0) {
+                newIndex = galleryData.length - 1;
+            } else if (newIndex >= galleryData.length) {
+                newIndex = 0;
+            }
+            
+            // If filtering is active, only navigate to visible images
+            if (currentCategory !== 'all') {
+                let found = false;
+                let loopCount = 0;
+                
+                while (!found && loopCount < galleryData.length) {
+                    if (galleryData[newIndex].category === currentCategory) {
+                        found = true;
+                    } else {
+                        newIndex = direction > 0 ? 
+                            (newIndex + 1 >= galleryData.length ? 0 : newIndex + 1) : 
+                            (newIndex - 1 < 0 ? galleryData.length - 1 : newIndex - 1);
+                    }
+                    loopCount++;
+                }
+            }
+            
+            openGalleryModal(newIndex);
+        }
+        
+        // Filter button click events
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.getAttribute('data-filter');
+                
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                filterGallery(category);
+            });
+        });
+        
+        // Testimonial Slider
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            testimonialItems.forEach((item, i) => {
+                item.classList.remove('active');
+                testimonialDots[i].classList.remove('active');
+            });
+            
+            testimonialItems[index].classList.add('active');
+            testimonialDots[index].classList.add('active');
+            currentTestimonial = index;
+        }
+        
+        prevTestimonial.addEventListener('click', () => {
+            let newIndex = currentTestimonial - 1;
+            if (newIndex < 0) newIndex = testimonialItems.length - 1;
+            showTestimonial(newIndex);
+        });
+        
+        nextTestimonial.addEventListener('click', () => {
+            let newIndex = currentTestimonial + 1;
+            if (newIndex >= testimonialItems.length) newIndex = 0;
+            showTestimonial(newIndex);
+        });
+        
+        testimonialDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showTestimonial(index);
+            });
+        });
+        
+        // Auto rotate testimonials
+        setInterval(() => {
+            let newIndex = currentTestimonial + 1;
+            if (newIndex >= testimonialItems.length) newIndex = 0;
+            showTestimonial(newIndex);
+        }, 5000);
+
+        // Form Submission
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+        
+        // Initialize gallery on page load
+        initGallery();
+        
+        // Keyboard navigation for gallery modal
+        document.addEventListener('keydown', (e) => {
+            if (galleryModal.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeGalleryModal();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateGallery(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateGallery(1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
